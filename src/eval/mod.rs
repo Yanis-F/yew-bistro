@@ -1,5 +1,12 @@
-pub fn evaluate(expr: &str, _base: &str) -> String {
+use crate::eval::num_parser::NumParser;
+
+mod num_parser;
+
+
+pub fn evaluate(expr: &str, base: &str) -> anyhow::Result<String> {
     log::info!("evaluating '{}'", expr);
 
-    expr.to_string()
+	let parser = NumParser::from_base(base)?;
+
+	Ok(expr.to_string())
 }
