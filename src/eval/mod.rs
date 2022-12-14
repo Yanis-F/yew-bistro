@@ -1,12 +1,18 @@
-use crate::eval::num_parser::NumParser;
+mod expr;
+mod numeric_base;
+mod operator;
+mod parser;
+mod token;
 
-mod num_parser;
+use crate::eval::{numeric_base::NumericBase, token::tokenize_strexpr};
 
+pub fn evaluate(expr_str: &str, base_str: &str) -> anyhow::Result<String> {
+    log::info!("evaluating '{}'", expr_str);
 
-pub fn evaluate(expr: &str, base: &str) -> anyhow::Result<String> {
-    log::info!("evaluating '{}'", expr);
+    let numeric_base = NumericBase::from_base(base_str)?;
+    let tokens = tokenize_strexpr(expr_str, &numeric_base)?;
 
-	let parser = NumParser::from_base(base)?;
+    log::debug!("Tokens are {:#?}", tokens);
 
-	Ok(expr.to_string())
+    Ok("todo".to_string())
 }

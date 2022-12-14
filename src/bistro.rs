@@ -31,12 +31,10 @@ impl Component for Bistro {
             Message::SetInputExpr(expr) => self.input_expr = expr,
             Message::SetInputBase(base) => self.input_base = base,
 
-            Message::DoCompute => {
-            	match evaluate(&self.input_expr, &self.input_base) {
-					Ok(result) => self.result = result,
-					Err(e)     => self.result = format!("ERROR: {}", e)
-				}
-			}
+            Message::DoCompute => match evaluate(&self.input_expr, &self.input_base) {
+                Ok(result) => self.result = result,
+                Err(e) => self.result = format!("ERROR: {}", e),
+            },
         };
         true
     }
