@@ -1,7 +1,7 @@
 use maplit::hashmap;
 use std::collections::HashMap;
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Operator {
     Power,
 

@@ -3,6 +3,7 @@ use num_bigint::BigInt;
 use super::{numeric_base::NumericBase, operator::Operator, parser::*};
 
 #[derive(Debug)]
+#[derive(Clone)]
 pub enum Token {
     Number(BigInt),
     Operator(Operator),
